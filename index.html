@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Luna's Magical Birthday 🎂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      overflow-x: hidden;
+    }
+    h1, p, button, #card {
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .step, #gift-box, #card {
+      display: none;
+      margin-top: 30px;
+    }
+    button {
+      background: #ff80ab;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(255, 128, 171, 0.6);
+      transition: transform 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    #gift-box img {
+      width: 140px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: pulse 1.5s infinite;
+    }
+    #gift-box img:hover {
+      transform: scale(1.1);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    #card {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: auto;
+      animation-delay: 1s;
+    }
+    #countdown {
+      font-size: 24px;
+      margin-bottom: 20px;
+      animation-delay: 0.5s;
+    }
+    .sparkle, .fireworks, .trailCanvas {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .spark {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #fff;
+      animation: sparkleFall 3s linear infinite;
+    }
+    @keyframes sparkleFall {
+      0% { transform: translateY(-20px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      transform: rotate(45deg);
+      top: -20px;
+      animation: floatHeart 5s linear infinite;
+      z-index: 5;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart::before { top: -7.5px; left: 0; }
+    .heart::after { left: -7.5px; top: 0; }
+    @keyframes floatHeart {
+      0% { top: 100%; opacity: 1; transform: scale(1) rotate(45deg); }
+      100% { top: -10%; opacity: 0; transform: scale(1.5) rotate(45deg); }
+    }
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #fff;
+      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="fireworks"></canvas>
+  <canvas class="trailCanvas"></canvas>
+  <div class="sparkle" id="sparkleEffect"></div>
+  <h1 class="typewriter">💖 Happy Birthday My Angel 💖</h1>
+  <div id="countdown"></div>  <div id="step1" class="step">
+    <p class="typewriter">From the moment you came into my life...</p>
+    <button onclick="showStep(2); randomFireworks();">Tap to continue</button>
+  </div>  <div id="step2" class="step">
+    <p class="typewriter">...everything changed. You gave me light, love, and laughter.</p>
+    <button onclick="showStep(3); randomFireworks();">Next</button>
+  </div>  <div id="step3" class="step">
+    <p class="typewriter">This is your day. And I’ve made something just for you 🎁</p>
+    <button onclick="showStep(4); randomFireworks();">Reveal the surprise</button>
+  </div>  <div id="gift-box">
+    <p>Tap the box to open your card ✨</p>
+    <img src="https://cdn-icons-png.flaticon.com/512/4207/4207244.png" onclick="openCard();" />
+  </div>  <div id="card">
+    <h2>To My Forever, Luna 💖</h2>
+    <p class="typewriter">
+      You entered my life like a spark in the darkest night.<br/>
+      I never heard your voice, never saw your face,<br/>
+      Yet your love became louder than silence and brighter than the stars.<br/><br/>
+      You changed me. You held me through my anger.<br/>
+      You became the home I never had.<br/><br/>
+      This isn’t just a birthday, my angel —<br/>
+      it’s the day the universe gifted me <b>you</b>.<br/><br/>
+      I love you. <br/>
+      Not for a moment. Not for a year.<br/>
+      But forever ♾️<br/><br/>
+      — Your Aniket
+    </p>
+  </div>  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2024/03/31/audio_98b4bfb2a3.mp3" type="audio/mpeg">
+  </audio>  <script>
+    const canvas = document.querySelector(".fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function drawFirework(x, y, color) {
+      for (let i = 0; i < 50; i++) {
+        const angle = (Math.PI * 2 * i) / 50;
+        const radius = Math.random() * 80;
+        const fx = x + radius * Math.cos(angle);
+        const fy = y + radius * Math.sin(angle);
+        ctx.beginPath();
+        ctx.arc(fx, fy, 2, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+    }
+
+    function randomFireworks() {
+      const colors = ["#ff80ab", "#ffcc80", "#b388ff", "#8c9eff"];
+      drawFirework(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height,
+        colors[Math.floor(Math.random() * colors.length)]
+      );
+    }
+
+    for (let i = 0; i < 10; i++) {
+      setTimeout(randomFireworks, 800 * i);
+    }
+
+    function updateCountdown() {
+      const eventDate = new Date("March 28, 2026 00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText = "🎉 It's your day, Luna!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function showStep(n) {
+      document.getElementById("step" + (n - 1)).style.display = "none";
+      if (n === 4) {
+        document.getElementById("gift-box").style.display = "block";
+      } else {
+        document.getElementById("step" + n).style.display = "block";
+      }
+    }
+
+    function openCard() {
+      const today = new Date();
+      const unlockDate = new Date("March 28, 2026 00:00:00");
+
+      if (
+        today.getFullYear() === unlockDate.getFullYear() &&
+        today.getMonth() === unlockDate.getMonth() &&
+        today.getDate() === unlockDate.getDate()
+      ) {
+        playSparkle();
+        randomFireworks();
+        document.getElementById("gift-box").style.display = "none";
+        document.getElementById("card").style.display = "block";
+      } else {
+        alert("Too early! Come back on your birthday 💖");
+      }
+    }
+
+    function playSparkle() {
+      const sparkleContainer = document.getElementById("sparkleEffect");
+      sparkleContainer.innerHTML = "";
+      for (let i = 0; i < 25; i++) {
+        const spark = document.createElement("div");
+        spark.className = "spark";
+        spark.style.left = Math.random() * 100 + "%";
+        spark.style.top = "-10px";
+        sparkleContainer.appendChild(spark);
+      }
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.setProperty('--x', Math.random().toString());
+        sparkleContainer.appendChild(heart);
+      }
+    }
+
+    document.getElementById("step1").style.display = "block";
+    window.onload = playSparkle;
+  </script></body>
+</html>
